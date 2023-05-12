@@ -28,5 +28,31 @@
         android:src="@drawable/baseline_person_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <ImageView
+        android:id="@+id/matchesImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="16dp"
+
+        android:background="@drawable/rectangle_173_ek1_shape"
+        android:outlineAmbientShadowColor="@color/black"
+        android:autofillHints="matches"
+        android:src="@drawable/baseline_supervisor_account_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/messageImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/rectangle_173_ek1_shape"
+        android:outlineAmbientShadowColor="@color/black"
+        android:scaleType="center"
+        android:src="@drawable/baseline_message_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

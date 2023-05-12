@@ -20,7 +20,8 @@
     <color name="_bg__register_ek2_color">#FFFFFF</color>
     <color name="already_have_an_account__login_now_color">#1E232C</color>
     <color name="or_register_with_color">#6A707C</color>
-
+    <color name="md_grey_400">#BDBDBD</color>
+    <color name="md_grey_800">#424242</color>
     <color name="confirm_password_color">#8390A1</color>
     <color name="rectangle_4_ek2_color">#F7F8F9</color>
     <color name="_bg__profile_posts_ek2_color">#FFFFFF</color>

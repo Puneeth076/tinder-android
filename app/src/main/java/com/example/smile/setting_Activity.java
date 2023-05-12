@@ -55,8 +55,8 @@ public class setting_Activity extends AppCompatActivity {
 
     TextView username;
 
-    DatabaseReference mCustomerDatabase;
-    String userid, name, phone, imageUrl;
+    DatabaseReference mUsersDatabase;
+    String userid, name, phone, imageUrl,value;
     Uri resultUri;
 
 
@@ -66,7 +66,7 @@ public class setting_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-        String value = getIntent().getExtras().getString("userGender");
+
         inputName = findViewById(R.id.inputName);
         inputPhone = findViewById(R.id.phone);
         inputProfile = findViewById(R.id.image);
@@ -76,7 +76,7 @@ public class setting_Activity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         userid = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
 
-        mCustomerDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(value).child(userid);
+        mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
 
         backBtn.setOnClickListener(view -> {
             Intent intent = new Intent(setting_Activity.this, MainActivity.class);
@@ -97,7 +97,7 @@ public class setting_Activity extends AppCompatActivity {
     }
 
     private void getUserData(){
-        mCustomerDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        mUsersDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
@@ -111,6 +111,10 @@ public class setting_Activity extends AppCompatActivity {
                     if(map.get("phone") != null){
                         phone = Objects.requireNonNull(map.get("phone")).toString();
                         inputPhone.setText(phone);
+                    }
+                    if(map.get("gender") != null){
+                        value = Objects.requireNonNull(map.get("gender")).toString();
+
                     }
                     if(map.get("profileImage") != null){
                         imageUrl = map.get("profileImage").toString();
@@ -169,7 +173,7 @@ public class setting_Activity extends AppCompatActivity {
         Map<String, Object> userInfo = new HashMap<>();
         userInfo.put("name", name);
         userInfo.put("phone", phone);
-        mCustomerDatabase.updateChildren(userInfo);
+        mUsersDatabase.updateChildren(userInfo);
 
         if(resultUri != null){
 
@@ -204,7 +208,7 @@ public class setting_Activity extends AppCompatActivity {
                             Map<String, Object> userInfo1 = new HashMap<>();
 
                             userInfo1.put("profileImage", photoLink);
-                            mCustomerDatabase.updateChildren(userInfo1);
+                            mUsersDatabase.updateChildren(userInfo1);
                             finish();
                             Intent intent = new Intent(setting_Activity.this, MainActivity.class);
                             startActivity(intent);

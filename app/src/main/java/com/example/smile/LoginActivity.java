@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     Button loginBtn;
     EditText inputEmail, inputPassword;
     ProgressDialog progressDialog;
+    FirebaseAuth.AuthStateListener firebaseAuthStateListener;
     FirebaseAuth mAuth;
     TextView toRegister;
 
@@ -54,6 +55,20 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                if(mUser != null){
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    return;
+                }
+                else{
+
+                }
+            }
+        };
     }
 
     private void performLogin() {
@@ -67,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
             inputPassword.setError("Password required");
             inputPassword.requestFocus();
         }else{
-            progressDialog.setMessage("Plase wait until login...");
+            progressDialog.setMessage("Please wait until login...");
             progressDialog.setTitle("Login");
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
@@ -97,6 +112,16 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(firebaseAuthStateListener);
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mAuth.removeAuthStateListener(firebaseAuthStateListener);
+    }
 
 }
