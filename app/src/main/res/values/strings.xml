@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Smile</string>
+
+    <string name="ek_img_content">ExportKit Image</string>
+    <string name="continue_as_a_guest_string"><u>Continue as a guest</u></string>
+    <string name="register_string">Register</string>
+    <string name="login_string">Login</string>
+
+    <string name="already_have_an_account__login_now_string">Already have an account? Login Now</string>
+    <string name="or_register_with_string">Or Register with</string>
+    <string name="register_ek3_string">Register</string>
+    <string name="confirm_password_string">Confirm password</string>
+    <string name="password_string">Password</string>
+    <string name="email_string">Email</string>
+    <string name="username_string">Username</string>
+    <string name="hello__register_to_get_started_string">Hello! Register to get started</string>
+    <string name="don_t_have_an_account__register_now_string">Dont have an account? Register Now</string>
+    <string name="or_login_with_string">Or Login with</string>
+    <string name="login_ek3_string">Login</string>
+    <string name="forgot_password__string">Forgot Password?</string>
+    <string name="enter_your_password_string">Enter your password</string>
+    <string name="enter_your_email_string">Enter your email</string>
+    <string name="welcome_back__glad_to_see_you__again__string">Welcome back! Glad to see you, Again!</string>
+    <string name="logout_string">Logout</string>
+    <string name="profile_string">Profile</string>
+    <string name="settings_string">Settings</string>
+</resources>

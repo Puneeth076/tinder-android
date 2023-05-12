@@ -1,0 +1,185 @@
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="wrap_content" >
+    <!--
+    /*
+     *	This content is generated from the API File Info.
+     *	(Alt+Shift+Ctrl+I).
+     *
+     *	@desc
+     *	@file 		profile_posts
+     *	@date 		Thursday 11th of May 2023 05:58:32 PM
+     *	@title 		Mobile UI Kit
+     *	@author
+     *	@keywords
+     *	@generator 	Export Kit v1.3.figma
+     *
+     */
+    -->
+    <ScrollView android:id="@+id/profile_posts"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout android:id="@+id/content_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+
+
+            <RelativeLayout android:id="@+id/page_profile_posts_ek1"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <View
+                    android:id="@+id/_bg__profile_posts_ek2"
+                    android:layout_width="420dp"
+                    android:layout_height="812dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:background="@drawable/_bg__profile_posts_ek2_shape" />
+
+                <View   android:id="@+id/rectangle_239"
+                    android:background="@drawable/rectangle_239_shape"
+                    android:layout_marginStart="-1dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_width="420dp"
+                    android:layout_height="245dp" />
+
+                <ImageView android:id="@+id/image"
+                    android:src="@drawable/ellipse_6"
+                    android:contentDescription="ellipse_6"
+                    android:layout_marginStart="108dp"
+
+                    android:scaleType="centerCrop"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginTop="128dp"
+                    android:layout_width="158dp"
+                    android:layout_height="158dp" />
+
+
+                <RelativeLayout android:id="@+id/name___bio"
+                    android:layout_marginTop="302dp"
+                    android:layout_marginStart="52dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView android:id="@+id/name"
+
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal|center"
+                        android:gravity="center"
+                        android:textSize="30sp"
+                        android:textColor="@color/victoria_robertson_color"
+                        android:layout_marginLeft="-5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_width="292dp"
+                        android:layout_height="57dp"
+                        android:text="hii"
+                        />
+
+
+
+                </RelativeLayout>
+
+                <EditText
+                    android:id="@+id/inputName"
+                    android:layout_width="301dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="41dp"
+                    android:hint="username"
+                    android:paddingStart="10dp"
+                    android:layout_marginTop="425dp"
+                    android:background="@drawable/rectangle_240_shape" />
+
+                <EditText
+                    android:id="@+id/phone"
+                    android:background="@drawable/rectangle_241_shape"
+                    android:layout_marginStart="41dp"
+                    android:layout_marginTop="513dp"
+                    android:layout_width="301dp"
+                    android:hint="phone"
+                    android:paddingStart="10dp"
+                    android:layout_height="56dp" />
+
+                <Button   android:id="@+id/rectangle_242"
+
+                    android:layout_marginStart="41dp"
+                    android:backgroundTint="@color/black"
+                    android:layout_marginTop="601dp"
+                    android:layout_width="129dp"
+                    android:text="back"
+                    android:layout_height="56dp" />
+
+                <Button   android:id="@+id/rectangle_243"
+                   android:backgroundTint="@color/white"
+                    android:layout_marginStart="205dp"
+                    android:layout_marginTop="601dp"
+                    android:textColor="@color/black"
+                    android:text="submit"
+                    android:layout_width="129dp"
+                    android:layout_height="56dp" />
+
+
+                <RelativeLayout android:id="@+id/page_header"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <TextView android:id="@+id/logout"
+                        android:onClick="logoutFunction"
+                        android:layout_gravity="center_vertical|end"
+                        android:gravity="end"
+                        android:textSize="18sp"
+                        android:textColor="@color/_bg__profile_posts_ek2_color"
+                        android:layout_marginLeft="270dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="67dp"
+                        android:layout_height="30dp"
+                        android:text="@string/logout_string"
+                        />
+
+                    <TextView android:id="@+id/profile"
+
+                        android:textStyle="bold"
+                        android:layout_gravity="center_horizontal|center"
+                        android:gravity="center"
+                        android:textSize="30sp"
+                        android:textColor="@color/_bg__profile_posts_ek2_color"
+                        android:layout_marginLeft="121dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_width="114dp"
+                        android:layout_height="57dp"
+                        android:text="@string/profile_string"
+                        />
+
+                    <ImageView android:id="@+id/__img___icon_x"
+                        android:src="@drawable/__img___icon_x"
+                        android:contentDescription="__img___icon_x"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp" />
+
+                    <TextView android:id="@+id/settings"
+
+                        android:textSize="16sp"
+                        android:textColor="@color/_bg__profile_posts_ek2_color"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="85dp"
+                        android:layout_height="30dp"
+                        android:text="@string/settings_string"
+                        />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+</HorizontalScrollView>
