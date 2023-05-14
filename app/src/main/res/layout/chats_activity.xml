@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginVertical="30dp"
+            android:orientation="horizontal"
+            android:paddingVertical="5dp"
+            android:background="@drawable/rectangle_161_shape"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/senderImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="5dp"
+
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/img1"
+                app:civ_border_width="0dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="20dp"
+                android:textSize="30dp"
+
+                android:id="@+id/senderName"
+                android:text="Name of the candidate"/>
+        </LinearLayout>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleView"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content" />
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:hint="Enter your message..."
+            android:id="@+id/message"
+            android:layout_marginEnd="10dp"
+            android:layout_height="wrap_content"/>
+        <ImageButton
+            android:layout_width="70dp"
+            android:src="@drawable/vector_ek1"
+            android:id="@+id/sendMessage"
+            android:background="@drawable/circle_blue_background"
+            android:layout_height="50dp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

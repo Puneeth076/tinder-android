@@ -78,7 +78,7 @@
                         android:layout_height="56dp" />
 
                     <ImageView android:id="@+id/__img___apple"
-                        android:src="@drawable/__img___apple_"
+                        android:src="@drawable/__img___apple"
                         android:contentDescription="__img___apple"
                         android:layout_marginStart="226dp"
                         android:layout_marginTop="39dp"

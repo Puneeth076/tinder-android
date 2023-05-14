@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.smile.matches.MatchesActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -66,16 +67,16 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, MatchesActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-                return;
+
             }
         });
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, setting_Activity.class);
-
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });
@@ -139,8 +140,11 @@ public class MainActivity extends Activity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     Toast.makeText(MainActivity.this, "New connection", Toast.LENGTH_LONG).show();
-                    userDb.child(snapshot.getKey()).child("connections").child("matches").child(currentUid).setValue(true);
-                    userDb.child(currentUid).child("connections").child("matches").child(snapshot.getKey()).setValue(true);
+                    String key = FirebaseDatabase.getInstance().getReference().child("chat").push().getKey();
+
+                    userDb.child(snapshot.getKey()).child("connections").child("matches").child(currentUid).child("chatId").setValue(key);
+
+                    userDb.child(currentUid).child("connections").child("matches").child(snapshot.getKey()).child("chatId").setValue(key);
                 }
             }
 
@@ -197,7 +201,7 @@ public class MainActivity extends Activity {
         userDb.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                if (snapshot.exists() && !snapshot.child("connections").child("nope").hasChild(currentUid) && !snapshot.child("connections").child("yope").hasChild(currentUid) && snapshot.child("gender").getValue().toString().equals(notUserGender) ){
+                if (snapshot.exists() && !snapshot.child("connections").child("nope").hasChild(currentUid) && !snapshot.child("connections").child("yope").hasChild(currentUid)  ){
                     String userProfile = "default";
 
 

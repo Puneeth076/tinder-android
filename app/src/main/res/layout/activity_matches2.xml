@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    tools:context=".matches.MatchesActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Matches"
+            android:textSize="50dp"
+            android:textColor="@color/black"
+            android:layout_marginTop="50dp"
+
+            android:gravity="center"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_margin="5sp"
+            android:layout_marginBottom="5sp"
+            android:background="@color/black"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recycleView"
+            
+            android:layout_margin="5dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="10dp"
+            android:scrollbars="vertical"/>
+
+
+
+</LinearLayout>

@@ -17,6 +17,9 @@
     <string name="don_t_have_an_account__register_now_string">Dont have an account? Register Now</string>
     <string name="or_login_with_string">Or Login with</string>
     <string name="login_ek3_string">Login</string>
+    <string name="type_your_message____string">Type your message...</string>
+    <string name="legend___restaurant_string">Legend - Restaurant </string>
+    <string name="food_and_entertainment_string">Food and entertainment</string>
     <string name="forgot_password__string">Forgot Password?</string>
     <string name="enter_your_password_string">Enter your password</string>
     <string name="enter_your_email_string">Enter your email</string>

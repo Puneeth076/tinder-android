@@ -16,6 +16,10 @@
     <color name="line_1_color">#E8ECF4</color>
     <color name="rectangle_4_color">#F6F7F8</color>
     <color name="enter_your_password_color">#8390A1</color>
+    <color name="_bg__chat___default_ek2_color">#FEFEFE</color>
+    <color name="rectangle_28_color">#F4F4F4</color>
+    <color name="type_your_message____color">#000000</color>
+    <color name="legend___restaurant_color">#1E1E1E</color>
     <color name="rectangle_4_ek1_color">#F7F8F9</color>
     <color name="_bg__register_ek2_color">#FFFFFF</color>
     <color name="already_have_an_account__login_now_color">#1E232C</color>
