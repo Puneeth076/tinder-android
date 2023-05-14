@@ -1,17 +1,24 @@
 package com.example.smile.chats;
 
 public class ChatsObject {
-    String userId;
-
-    public ChatsObject(String userId, String name, String profileImage) {
-        this.userId = userId;
+    private String message;
+    private Boolean currentUser;
+    public ChatsObject(String message, Boolean currentUser){
+        this.message = message;
+        this.currentUser = currentUser;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getMessage(){
+        return message;
+    }
+    public void setMessage(String message){
+        this.message = message;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public Boolean getCurrentUser(){
+        return currentUser;
+    }
+    public void setCurrentUser(Boolean currentUser){
+        this.currentUser = currentUser;
     }
 }

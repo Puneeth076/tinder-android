@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
 
 
 
@@ -16,43 +17,47 @@
     app:rotation_degrees="15.5"
     tools:context=".MyActivity" />
 
-    <ImageView
-        android:id="@+id/profileImage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rectangle_173_ek1_shape"
-        android:outlineAmbientShadowColor="@color/black"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/rectangle_173_ek1_shape">
 
-        android:src="@drawable/baseline_person_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <ImageView
+        <RelativeLayout
+            android:layout_width="187dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/profileImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="70dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/rectangle_173_ek1_shape"
+
+                android:src="@drawable/baseline_person_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </RelativeLayout>
+
+
+        <ImageView
         android:id="@+id/matchesImage"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="170dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="16dp"
-
+        android:layout_marginBottom="5dp"
         android:background="@drawable/rectangle_173_ek1_shape"
-        android:outlineAmbientShadowColor="@color/black"
         android:autofillHints="matches"
         android:src="@drawable/baseline_supervisor_account_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/messageImage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="320dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rectangle_173_ek1_shape"
-        android:outlineAmbientShadowColor="@color/black"
-        android:scaleType="center"
-        android:src="@drawable/baseline_message_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

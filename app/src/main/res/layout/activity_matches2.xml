@@ -6,6 +6,40 @@
     android:orientation="vertical"
     android:layout_height="wrap_content"
     tools:context=".matches.MatchesActivity">
+        <RelativeLayout android:id="@+id/back"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="22dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="goToMainPage"
+            >
+
+                <View   android:id="@+id/rectangle_161"
+                    android:background="@drawable/rectangle_161_shape"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_width="43dp"
+                    android:layout_height="43dp" />
+
+
+                <RelativeLayout android:id="@+id/back_arrow"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                        <ImageView android:id="@+id/vector"
+                            android:src="@drawable/vector"
+                            android:contentDescription="vector"
+                            android:layout_marginStart="4.95dp"
+                            android:layout_marginTop="2.08dp"
+                            android:layout_width="8.5dp"
+                            android:layout_height="14.86dp" />
+
+                </RelativeLayout>
+
+        </RelativeLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -13,7 +47,6 @@
             android:text="Matches"
             android:textSize="50dp"
             android:textColor="@color/black"
-            android:layout_marginTop="50dp"
 
             android:gravity="center"/>
 

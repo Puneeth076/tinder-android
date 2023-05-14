@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "145391592031",
+    "firebase_url": "https://tinder-clone-firebase-078-default-rtdb.firebaseio.com",
     "project_id": "tinder-clone-firebase-078",
     "storage_bucket": "tinder-clone-firebase-078.appspot.com"
   },
@@ -14,7 +15,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "145391592031-ntd1k2rgcuetvla6rdl6praihbnk71k3.apps.googleusercontent.com",
+          "client_id": "145391592031-s2vfknc274eeqat3gqpf3d3rea7ab1oh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

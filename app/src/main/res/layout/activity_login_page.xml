@@ -1,43 +1,22 @@
-<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="wrap_content" >
-    <!--
-    /*
-     *	This content is generated from the API File Info.
-     *	(Alt+Shift+Ctrl+I).
-     *
-     *	@desc
-     *	@file 		login
-     *	@date 		Thursday 11th of May 2023 01:54:25 PM
-     *	@title 		Login App UI Kit
-     *	@author
-     *	@keywords
-     *	@generator 	Export Kit v1.3.figma
-     *
-     */
-    -->
+
     <ScrollView android:id="@+id/login"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
         <RelativeLayout android:id="@+id/content_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
 
 
 
             <RelativeLayout android:id="@+id/page_login_ek1"
-                android:layout_marginTop="0dp"
-                android:layout_marginStart="0dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 >
 
-                <View   android:id="@+id/_bg__login_ek2"
-                    android:background="@drawable/_bg__login_ek2_shape"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_width="375dp"
-                    android:layout_height="812dp" />
+
 
                 <TextView android:id="@+id/don_t_have_an_account__register_now"
 
@@ -46,9 +25,9 @@
                     android:textSize="15sp"
                     android:textColor="@color/don_t_have_an_account__register_now_color"
                     android:layout_marginLeft="58dp"
-                    android:layout_marginTop="765dp"
+                    android:layout_marginTop="650dp"
                     android:layout_width="267dp"
-                    android:layout_height="31.5dp"
+                    android:layout_height="40dp"
                     android:text="@string/don_t_have_an_account__register_now_string"
                     />
 
@@ -135,6 +114,7 @@
                         android:backgroundTint="@color/black"
                         android:layout_marginStart="0dp"
                         android:layout_marginTop="0dp"
+                        android:textColor="@color/white"
                         android:layout_width="331dp"
                         android:layout_height="56dp"
                         android:text="Login"/>
@@ -143,19 +123,23 @@
 
                 </RelativeLayout>
 
-                <TextView android:id="@+id/forgot_password_"
+                <TextView
+                    android:id="@+id/forgot_password_"
 
-                    android:textStyle="bold"
+                    android:layout_width="197dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/enter_your_password__input_"
+                    android:layout_alignEnd="@+id/enter_your_password__input_"
                     android:layout_gravity="center_vertical|end"
-                    android:gravity="end"
-                    android:textSize="14sp"
-                    android:textColor="@color/or_login_with_color"
+                    android:layout_marginStart="144dp"
                     android:layout_marginLeft="240dp"
                     android:layout_marginTop="377dp"
-                    android:layout_width="123dp"
-                    android:layout_height="27dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
                     android:text="@string/forgot_password__string"
-                    />
+                    android:textColor="@color/or_login_with_color"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
 
 
                 <RelativeLayout android:id="@+id/enter_your_password__input_"
@@ -181,18 +165,10 @@
                         android:layout_marginStart="293dp"
                         android:layout_marginTop="17dp"
                         android:layout_width="22dp"
+                        android:onClick="showPassword"
                         android:layout_height="22dp" />
 
-<!--                    <TextView android:id="@+id/enter_your_password"-->
 
-<!--                        android:textSize="15sp"-->
-<!--                        android:textColor="@color/enter_your_password_color"-->
-<!--                        android:layout_marginLeft="18dp"-->
-<!--                        android:layout_marginTop="18dp"-->
-<!--                        android:layout_width="156.5dp"-->
-<!--                        android:layout_height="29.5dp"-->
-<!--                        android:text="@string/enter_your_password_string"-->
-<!--                        />-->
 
                 </RelativeLayout>
 
@@ -255,6 +231,7 @@
                     android:layout_marginStart="22dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="goToFrontPage"
                     >
 
                     <View   android:id="@+id/rectangle_161"
@@ -272,13 +249,14 @@
                         android:layout_height="wrap_content"
                         >
 
-                        <ImageView android:id="@+id/vector"
-                            android:src="@drawable/vector"
-                            android:contentDescription="vector"
+                        <ImageView
+                            android:id="@+id/vector"
+                            android:layout_width="8.5dp"
+                            android:layout_height="14.86dp"
                             android:layout_marginStart="4.95dp"
                             android:layout_marginTop="2.08dp"
-                            android:layout_width="8.5dp"
-                            android:layout_height="14.86dp" />
+                            android:contentDescription="vector"
+                            android:src="@drawable/vector" />
 
                     </RelativeLayout>
 
@@ -288,4 +266,4 @@
         </RelativeLayout>
 
     </ScrollView>
-</HorizontalScrollView>
+</LinearLayout>

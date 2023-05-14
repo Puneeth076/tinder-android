@@ -6,9 +6,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
+import com.example.smile.MainActivity;
 import com.example.smile.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -104,5 +107,11 @@ public class MatchesActivity extends AppCompatActivity {
 
     private List<MatchesObject> getDatasetMatches() {
         return resultMatches;
+    }
+
+    public void goToMainPage(View view){
+        Intent intent = new Intent(MatchesActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

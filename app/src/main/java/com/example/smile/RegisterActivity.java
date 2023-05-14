@@ -9,19 +9,32 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.Api;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GithubAuthProvider;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,9 +54,22 @@ public class RegisterActivity extends AppCompatActivity {
     RadioGroup mRadioGroup;
 
     FirebaseDatabase database;
+    ImageView googleImage;
 
+    int RC_SIGN_IN = 20;
+
+    TextView genderError;
+    String emailPattern =
+            "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                    +"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                    +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                    +"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                    +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                    +"([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
+    String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8, 20}$";
     FirebaseAuth.AuthStateListener firebaseAuthStateListener;
     FirebaseAuth mAuth;
+    ImageView showPassword, showConfirmPassword;
     FirebaseUser mUser;
 
     @Override
@@ -59,9 +85,44 @@ public class RegisterActivity extends AppCompatActivity {
         mRadioGroup = findViewById(R.id.radioGroup);
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
+        googleImage = findViewById(R.id.__img___google);
         mUser = mAuth.getCurrentUser();
+        genderError = findViewById(R.id.genderError);
         loginPage = findViewById(R.id.already_have_an_account__login_now);
         database = FirebaseDatabase.getInstance();
+        showPassword = findViewById(R.id.__img___fluent_eye_20_filled);
+        showPassword.setImageResource(R.drawable.__img___fluent_eye_20_filled);
+        showConfirmPassword = findViewById(R.id.__img___fluent_eye_20_filled1);
+        showConfirmPassword.setImageResource(R.drawable.__img___fluent_eye_20_filled);
+
+
+
+        showPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (inputPassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())){
+                    inputPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    showPassword.setImageResource(R.drawable.__img___fluent_eye_20_filled);
+                }else{
+                    inputPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    showPassword.setImageResource(R.drawable.hide);
+                }
+            }
+        });
+
+        showConfirmPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (inputConfirmPassword.getTransformationMethod().equals(HideReturnsTransformationMethod.getInstance())){
+                    inputConfirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    showConfirmPassword.setImageResource(R.drawable.__img___fluent_eye_20_filled);
+                }else{
+                    inputConfirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    showConfirmPassword.setImageResource(R.drawable.hide);
+                }
+            }
+        });
+
 
         firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -94,6 +155,12 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+
+
+
+
+
+
     private void performAuth() {
         String name = inputName.getText().toString();
         String email = inputEmail.getText().toString();
@@ -102,28 +169,45 @@ public class RegisterActivity extends AppCompatActivity {
         int selectedId = mRadioGroup.getCheckedRadioButtonId();
         final RadioButton radioButton = findViewById(selectedId);
 
-        if (radioButton.getText() == null){
-            Toast.makeText(this, "Select gender", Toast.LENGTH_SHORT).show();
+      String radioButtonText = radioButton.getText().toString();
+
+      if(radioButtonText.equals("  ")){
+          Toast.makeText(getApplicationContext(), "Please select Gender", Toast.LENGTH_SHORT).show();
+          inputName.setError("Select gender");
+          finish();
+          return ;
+      }
+
+        if (!email.equals(emailPattern) && email.length() == 0){
+            inputEmail.setError("check your email");
+            finish();
+            return;
+        }
+
+        if (!password.equals(passwordPattern) && password.length() == 0){
+            inputPassword.setError("Password contains all fields");
+            finish();
             return;
         }
 
 
-
-
-        if(name.isEmpty()||email.isEmpty()||password.isEmpty()||confirmPassword.isEmpty()){
-            Toast.makeText(RegisterActivity.this, "All fields are required", Toast.LENGTH_LONG).show();
+        if(name.isEmpty()){
+            inputName.setError("name required");
+            finish();
             return;
         }
         else if(!password.equals(confirmPassword)){
             inputPassword.requestFocus();
             Toast.makeText(RegisterActivity.this, "Password mismatch", Toast.LENGTH_LONG).show();
+            inputPassword.setError("Password mismatch");
+            finish();
             return;
         }else {
+
             progressDialog.setTitle("Registration...");
             progressDialog.setMessage("Please wait until registration...");
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.show();
-
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegisterActivity.this, (task) -> {
                 if(!task.isSuccessful()){
                     Toast.makeText(this, "Email already exists", Toast.LENGTH_SHORT).show();
@@ -143,7 +227,6 @@ public class RegisterActivity extends AppCompatActivity {
                             Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
-                            Toast.makeText(RegisterActivity.this, "Registration completed", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         }
 
@@ -183,4 +266,12 @@ public class RegisterActivity extends AppCompatActivity {
         super.onStop();
         mAuth.removeAuthStateListener(firebaseAuthStateListener);
     }
+
+    public void goToFrontPage(View view){
+        Intent intent = new Intent(this, loginORregister_activity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+
 }

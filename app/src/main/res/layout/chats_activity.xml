@@ -2,12 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_alignParentTop="true"
         android:orientation="vertical"
         android:layout_height="wrap_content">
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_marginVertical="30dp"
@@ -16,6 +19,39 @@
             android:background="@drawable/rectangle_161_shape"
             android:layout_gravity="center_vertical"
             android:layout_height="wrap_content">
+            <RelativeLayout android:id="@+id/back"
+                android:layout_marginStart="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="goToMatchesPage"
+                >
+
+                <View   android:id="@+id/rectangle_161"
+                    android:background="@drawable/rectangle_161_shape"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_width="43dp"
+                    android:layout_height="43dp" />
+
+
+                <RelativeLayout android:id="@+id/back_arrow"
+                    android:layout_marginTop="11dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <ImageView android:id="@+id/vector"
+                        android:src="@drawable/vector"
+                        android:contentDescription="vector"
+                        android:layout_marginStart="4.95dp"
+                        android:layout_marginTop="2.08dp"
+                        android:layout_width="8.5dp"
+                        android:layout_height="14.86dp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/senderImage"
                 android:layout_width="50dp"
@@ -24,32 +60,70 @@
 
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="10dp"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:src="@drawable/img1"
                 app:civ_border_width="0dp" />
+
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/senderName"
+                android:layout_width="163dp"
                 android:layout_height="match_parent"
                 android:paddingStart="20dp"
-                android:textSize="30dp"
 
-                android:id="@+id/senderName"
-                android:text="Name of the candidate"/>
+                android:text="name"
+                android:textSize="30dp" />
+
+            <com.zegocloud.uikit.prebuilt.call.invite.widget.ZegoSendCallInvitationButton
+                android:layout_width="30dp"
+                android:layout_gravity="center"
+                android:id="@+id/audio_call"
+                android:layout_height="30dp"/>
+
+            <com.zegocloud.uikit.prebuilt.call.invite.widget.ZegoSendCallInvitationButton
+                android:layout_width="30dp"
+                android:layout_marginStart="20dp"
+                android:layout_gravity="center"
+                android:id="@+id/vedio_call"
+                android:layout_height="30dp"/>
+
+<!--            <ImageView-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:src="@drawable/audio_call_logo"/>-->
+<!--            <ImageView-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_gravity="center"-->
+
+<!--                android:layout_marginStart="15dp"-->
+<!--                android:src="@drawable/zoom"/>-->
+
         </LinearLayout>
 
-
-        <androidx.core.widget.NestedScrollView
+        <RelativeLayout
+            android:id="@+id/messageContainer"
             android:layout_width="match_parent"
+            android:layout_marginBottom="70dp"
             android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycleView"
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
 
-                android:layout_height="wrap_content" />
-        </androidx.core.widget.NestedScrollView>
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </androidx.core.widget.NestedScrollView>
+        </RelativeLayout>
+
+
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/sendLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

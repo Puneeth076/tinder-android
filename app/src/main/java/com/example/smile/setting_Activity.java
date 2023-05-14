@@ -3,6 +3,7 @@ package com.example.smile;
 import static java.security.AccessController.getContext;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -48,15 +49,16 @@ public class setting_Activity extends AppCompatActivity {
 
 
 
-    EditText inputName, inputPhone;
+    EditText inputName, inputPhone, inputLocation;
     Button confirmBtn, backBtn;
     ImageView inputProfile;
     FirebaseAuth mAuth;
+    ProgressDialog progressDialog;
 
     TextView username;
 
     DatabaseReference mUsersDatabase;
-    String userid, name, phone, imageUrl,value;
+    String userid, name, phone, imageUrl,value, location;
     Uri resultUri;
 
 
@@ -66,7 +68,7 @@ public class setting_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
-
+        inputLocation = findViewById(R.id.location);
         inputName = findViewById(R.id.inputName);
         inputPhone = findViewById(R.id.phone);
         inputProfile = findViewById(R.id.image);
@@ -74,7 +76,8 @@ public class setting_Activity extends AppCompatActivity {
         backBtn = findViewById(R.id.rectangle_242);
         username = findViewById(R.id.name);
         mAuth = FirebaseAuth.getInstance();
-        userid = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
+        progressDialog = new ProgressDialog(this);
+        userid = mAuth.getCurrentUser().getUid();
 
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
 
@@ -114,6 +117,11 @@ public class setting_Activity extends AppCompatActivity {
                     }
                     if(map.get("gender") != null){
                         value = Objects.requireNonNull(map.get("gender")).toString();
+
+                    }
+                    if(map.get("location") != null){
+                        location = Objects.requireNonNull(map.get("location")).toString();
+                        inputLocation.setText(location);
 
                     }
                     if(map.get("profileImage") != null){
@@ -169,15 +177,19 @@ public class setting_Activity extends AppCompatActivity {
     private void storeUsersData() {
         name = inputName.getText().toString();
         phone = inputPhone.getText().toString();
+        location = inputLocation.getText().toString();
 
         Map<String, Object> userInfo = new HashMap<>();
         userInfo.put("name", name);
         userInfo.put("phone", phone);
+        userInfo.put("location", location);
         mUsersDatabase.updateChildren(userInfo);
+
 
         if(resultUri != null){
 
-            StorageReference pathFile = FirebaseStorage.getInstance().getReference().child("profileImages ").child(userid);
+
+            StorageReference pathFile = FirebaseStorage.getInstance().getReference().child("profileImages").child(userid);
             Bitmap bitmap = null ;
             try {
                 bitmap = MediaStore.Images.Media.getBitmap(getApplication().getContentResolver(), resultUri);
@@ -191,6 +203,10 @@ public class setting_Activity extends AppCompatActivity {
             byte[] data = byteArrayOutputStream.toByteArray();
             UploadTask uploadTask = pathFile.putBytes(data);
 
+            progressDialog.setTitle("Loading...");
+            progressDialog.setMessage("Please wait until updating...");
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.show();
 
 
             uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -198,7 +214,7 @@ public class setting_Activity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                    
+
                     Task<Uri> downloadUri =  taskSnapshot.getMetadata().getReference().getDownloadUrl();
 
                     downloadUri.addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -207,6 +223,7 @@ public class setting_Activity extends AppCompatActivity {
                             String photoLink = uri.toString();
                             Map<String, Object> userInfo1 = new HashMap<>();
 
+                            progressDialog.dismiss();
                             userInfo1.put("profileImage", photoLink);
                             mUsersDatabase.updateChildren(userInfo1);
                             finish();
@@ -216,7 +233,7 @@ public class setting_Activity extends AppCompatActivity {
                     });
 
 
-                    }
+                }
 
             }).addOnFailureListener(new OnFailureListener() {
                 @Override

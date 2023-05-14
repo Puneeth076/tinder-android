@@ -140,7 +140,7 @@ public class MainActivity extends Activity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
                     Toast.makeText(MainActivity.this, "New connection", Toast.LENGTH_LONG).show();
-                    String key = FirebaseDatabase.getInstance().getReference().child("chat").push().getKey();
+                    String key = FirebaseDatabase.getInstance().getReference().child("chats").push().getKey();
 
                     userDb.child(snapshot.getKey()).child("connections").child("matches").child(currentUid).child("chatId").setValue(key);
 
@@ -201,19 +201,20 @@ public class MainActivity extends Activity {
         userDb.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                if (snapshot.exists() && !snapshot.child("connections").child("nope").hasChild(currentUid) && !snapshot.child("connections").child("yope").hasChild(currentUid)  ){
-                    String userProfile = "default";
+                if (snapshot.child("gender").getValue() != null) {
+                    if (snapshot.exists() && !snapshot.child("connections").child("nope").hasChild(currentUid) && !snapshot.child("connections").child("yope").hasChild(currentUid) && snapshot.child("gender").getValue().toString().equals(notUserGender)) {
+                        String userProfile = "default";
 
 
-                    if (!snapshot.child("profileImage").getValue().toString().equals("default")) {
+                        if (!snapshot.child("profileImage").getValue().toString().equals("default")) {
 
-                    userProfile = snapshot.child("profileImage").getValue().toString();
+                            userProfile = snapshot.child("profileImage").getValue().toString();
+                        }
+                        cards item = new cards(snapshot.getKey(), snapshot.child("name").getValue().toString(), userProfile);
+                        rowItems.add(item);
+                        arrayAdapter.notifyDataSetChanged();
                     }
-                    cards item = new cards(snapshot.getKey(), snapshot.child("name").getValue().toString(), userProfile);
-                    rowItems.add(item);
-                    arrayAdapter.notifyDataSetChanged();
                 }
-
             }
 
             @Override
