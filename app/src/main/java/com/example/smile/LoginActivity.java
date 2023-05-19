@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     FirebaseAuth.AuthStateListener firebaseAuthStateListener;
     FirebaseAuth mAuth;
-    TextView toRegister;
+    TextView toRegister, forgotPassword;
     String emailPattern =
             "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
                     +"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
@@ -53,6 +55,15 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
         showPassword = findViewById(R.id.__img___fluent_eye_20_filled);
         showPassword.setImageResource(R.drawable.__img___fluent_eye_20_filled);
+        forgotPassword = findViewById(R.id.forgot_password);
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, forgotPassword_activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
         showPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,19 +128,31 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                @Override
                public void onComplete(@NonNull Task<AuthResult> task) {
                    if(task.isSuccessful()){
-                       progressDialog.dismiss();
-                       sendUserToNextPage();
-                       Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_LONG).show();
-                   }else{
-                       progressDialog.dismiss();
-                       Toast.makeText(LoginActivity.this, "No user found", Toast.LENGTH_LONG).show();
+                       FirebaseUser user = mAuth.getCurrentUser();
+                       assert user != null;
+                       if (user.isEmailVerified()){
+                           progressDialog.dismiss();
+                           sendUserToNextPage();
+                           Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_LONG).show();
+                           return;
+                       }
+                       else{
+                           progressDialog.dismiss();
+                           Toast.makeText(LoginActivity.this, "Kindly verify your account", Toast.LENGTH_SHORT).show();
+                       }
 
-                   }
+
+                       }else{
+                           progressDialog.dismiss();
+                           Toast.makeText(LoginActivity.this, "No user found", Toast.LENGTH_LONG).show();
+
+                       }
+
+
                }
            });
         }
@@ -141,17 +164,17 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(firebaseAuthStateListener);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mAuth.removeAuthStateListener(firebaseAuthStateListener);
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        mAuth.addAuthStateListener(firebaseAuthStateListener);
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        mAuth.removeAuthStateListener(firebaseAuthStateListener);
+//    }
 
     public void  goToFrontPage(View view){
         Intent intent = new Intent(LoginActivity.this, loginORregister_activity.class);

@@ -5,6 +5,9 @@
     <string name="continue_as_a_guest_string"><u>Continue as a guest</u></string>
     <string name="register_string">Register</string>
     <string name="login_string">Login</string>
+    <string name="text_string">Recover Password</string>
+    <string name="heading_text_string">Forgot password?</string>
+    <string name="body_text_string">Enter your email address below and well send you an email with instructions on how to change your password</string>
 
     <string name="already_have_an_account__login_now_string">Already have an account? Login Now</string>
     <string name="or_register_with_string">Or Register with</string>

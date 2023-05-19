@@ -53,6 +53,7 @@ public class ChatsActivity extends AppCompatActivity {
     private RecyclerView.Adapter mChatsAdapter;
     String currentUserid, matchId, matchName,matchImage, chatId;
     TextView  mMatchName;
+    RecyclerView recyclerView;
     EditText inputMessages;
     RecyclerView.LayoutManager mMatchesLayoutManager;
     ZegoSendCallInvitationButton audio_call, vedio_call;
@@ -70,7 +71,7 @@ public class ChatsActivity extends AppCompatActivity {
         matchId = getIntent().getExtras().getString("matchId");
         matchName = getIntent().getExtras().getString("matchName");
         matchImage = getIntent().getExtras().getString("matchProfileImage");
-        RecyclerView recyclerView = findViewById(R.id.recycleView);
+        recyclerView = findViewById(R.id.recycleView);
         mMatchName = findViewById(R.id.senderName);
         profileImage = findViewById(R.id.senderImage);
         inputMessages = findViewById(R.id.message);
@@ -89,6 +90,19 @@ public class ChatsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mMatchesLayoutManager);
         recyclerView.setAdapter(mChatsAdapter);
         getChatId();
+        recyclerView.post(new Runnable() {
+            final LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+            final RecyclerView.Adapter adapter = recyclerView.getAdapter();
+            final int lastItemPosition = adapter.getItemCount() - 1;
+            @Override
+            public void run() {
+                View target = layoutManager.findViewByPosition(lastItemPosition);
+                if (target != null) {
+                    int offset = recyclerView.getMeasuredHeight() - target.getMeasuredHeight();
+                    layoutManager.scrollToPositionWithOffset(lastItemPosition, offset);
+                }
+            }
+        });
         mMatchName.setText(matchName);
         Glide.with(getApplication()).load(matchImage)
                 .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
@@ -157,6 +171,8 @@ public class ChatsActivity extends AppCompatActivity {
                     chatId = Objects.requireNonNull(snapshot.getValue()).toString();
                     mDatabaseChat = mDatabaseChat.child(chatId);
                     getChatMessages();
+
+
                 }
                 else {
                     Toast.makeText(ChatsActivity.this, "no data found", Toast.LENGTH_SHORT).show();

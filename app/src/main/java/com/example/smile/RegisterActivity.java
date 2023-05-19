@@ -28,6 +28,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.Api;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
@@ -44,6 +46,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -133,9 +136,7 @@ public class RegisterActivity extends AppCompatActivity {
                      finish();
                      return;
                 }
-                else{
 
-                }
             }
         };
 
@@ -170,13 +171,6 @@ public class RegisterActivity extends AppCompatActivity {
         final RadioButton radioButton = findViewById(selectedId);
 
       String radioButtonText = radioButton.getText().toString();
-
-      if(radioButtonText.equals("  ")){
-          Toast.makeText(getApplicationContext(), "Please select Gender", Toast.LENGTH_SHORT).show();
-          inputName.setError("Select gender");
-          finish();
-          return ;
-      }
 
         if (!email.equals(emailPattern) && email.length() == 0){
             inputEmail.setError("check your email");
@@ -214,58 +208,76 @@ public class RegisterActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                 }
                 else{
-                    String userId = mAuth.getCurrentUser().getUid();
-                    DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
-                    Map userInfo = new HashMap();
-                    userInfo.put("name", name);
-                    userInfo.put("gender", radioButton.getText().toString());
-                    userInfo.put("profileImage", "default");
-                    currentUserDb.updateChildren(userInfo);
-                    currentUserDb.addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            progressDialog.dismiss();
-                        }
+                    Objects.requireNonNull(mAuth.getCurrentUser()).sendEmailVerification()
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
 
-                        @Override
-                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                    String userId = mAuth.getCurrentUser().getUid();
+                                    DatabaseReference currentUserDb = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+                                    Map userInfo = new HashMap();
+                                    userInfo.put("name", name);
+                                    userInfo.put("gender", radioButton.getText().toString());
+                                    userInfo.put("profileImage", "default");
+                                    currentUserDb.updateChildren(userInfo);
 
-                        }
 
-                        @Override
-                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
-                        }
+                                    currentUserDb.addChildEventListener(new ChildEventListener() {
+                                        @Override
+                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                            FirebaseUser  user = mAuth.getCurrentUser();
 
-                        @Override
-                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            startActivity(intent);
+                                            progressDialog.dismiss();
+                                        }
 
-                        }
+                                        @Override
+                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                                        }
 
-                        }
-                    });
+                                        @Override
+                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
                 }
             });
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(firebaseAuthStateListener);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mAuth.removeAuthStateListener(firebaseAuthStateListener);
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        mAuth.addAuthStateListener(firebaseAuthStateListener);
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        mAuth.removeAuthStateListener(firebaseAuthStateListener);
+//    }
 
     public void goToFrontPage(View view){
         Intent intent = new Intent(this, loginORregister_activity.class);

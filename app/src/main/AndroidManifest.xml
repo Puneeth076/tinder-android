@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Smile"
         tools:targetApi="31">
         <activity
+            android:name=".forgotPassword_activity"
+            android:exported="false" />
+        <activity
             android:name=".google_activity"
             android:exported="false" />
         <activity
@@ -41,7 +44,7 @@
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />
