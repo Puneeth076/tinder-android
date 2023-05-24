@@ -29,90 +29,8 @@
                     android:layout_height="812dp" />
 
 
-                <TextView
-                    android:id="@+id/already_have_an_account__login_now"
-                    android:layout_width="266dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal|center"
-                    android:layout_marginLeft="58dp"
-                    android:layout_marginTop="735dp"
-                    android:gravity="center"
-                    android:text="@string/already_have_an_account__login_now_string"
-                    android:textColor="@color/already_have_an_account__login_now_color"
-                    android:textSize="15sp" />
-
-                <RelativeLayout android:id="@+id/register_with"
-                    android:layout_marginTop="616dp"
-                    android:layout_marginStart="22dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    >
-
-                    <ImageView android:id="@+id/__img___google"
-                        android:src="@drawable/__img___google"
-                        android:contentDescription="__img___google"
-                        android:layout_marginStart="113dp"
-                        android:layout_marginTop="39dp"
-                        android:layout_width="105dp"
-                        android:layout_height="56dp" />
-
-                    <ImageView android:id="@+id/__img___facebook"
-                        android:src="@drawable/__img___facebook"
-                        android:contentDescription="__img___facebook"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginTop="39dp"
-                        android:layout_width="105dp"
-                        android:layout_height="56dp" />
-
-                    <ImageView android:id="@+id/__img___apple"
-                        android:src="@drawable/__img___apple"
-                        android:contentDescription="__img___apple"
-                        android:layout_marginStart="226dp"
-                        android:layout_marginTop="39dp"
-                        android:layout_width="105dp"
-                        android:layout_height="56dp" />
-
-
-                    <RelativeLayout android:id="@+id/register_with_ek1"
-                        android:layout_marginTop="0dp"
-                        android:layout_marginStart="0dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        >
-
-                        <TextView android:id="@+id/or_register_with"
-
-                            android:textStyle="bold"
-                            android:textSize="14sp"
-                            android:textColor="@color/or_register_with_color"
-                            android:layout_marginLeft="115dp"
-                            android:layout_marginTop="0dp"
-                            android:layout_width="120dp"
-                            android:layout_height="27dp"
-                            android:text="@string/or_register_with_string"
-                            />
-
-                        <View   android:id="@+id/line_1"
-                            android:background="@drawable/line_1_shape"
-                            android:layout_marginStart="0dp"
-                            android:layout_marginTop="9dp"
-                            android:layout_width="103dp"
-                            android:layout_height="1dp" />
-
-                        <View   android:id="@+id/line_2"
-                            android:background="@drawable/line_2_shape"
-                            android:layout_marginStart="228dp"
-                            android:layout_marginTop="9dp"
-                            android:layout_width="103dp"
-                            android:layout_height="1dp" />
-
-                    </RelativeLayout>
-
-                </RelativeLayout>
-
-
                 <RelativeLayout android:id="@+id/register__button_"
-                    android:layout_marginTop="525dp"
+                    android:layout_marginTop="625dp"
                     android:layout_marginStart="22dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -122,7 +40,7 @@
                         android:id="@+id/update_btn"
                         android:backgroundTint="@color/black"
                         android:layout_marginStart="0dp"
-                        android:text="Register"
+                        android:text="Update"
                         android:textSize="25dp"
                         android:layout_marginTop="0dp"
                         android:layout_width="331dp"
@@ -137,134 +55,147 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="170dp"
+                    android:layout_marginTop="140dp"
                     android:layout_marginStart="20dp"
                     android:background="@drawable/rectangle_4_ek3_shape"
 
-                     >
+                    >
                     <RadioButton
                         android:id="@+id/radioButton1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/confirm_password_color"
-                        android:text="Male" />
+                        android:text="Single" />
 
                     <RadioButton
                         android:id="@+id/radioButton2"
                         android:layout_width="wrap_content"
                         android:padding="10dp"
                         android:layout_height="wrap_content"
-                        android:text="Female"
+                        android:text="Married"
                         android:textColor="@color/confirm_password_color"/>
 
 
                 </RadioGroup>
 
-                <RelativeLayout android:id="@+id/confirm_password__input_"
-                    android:layout_marginTop="439dp"
+                <RelativeLayout android:id="@+id/facebook_id"
+                    android:layout_marginTop="545dp"
                     android:layout_marginStart="22dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     >
 
                     <EditText
-                        android:id="@+id/confirm_password"
+                        android:id="@+id/facebook"
                         android:background="@drawable/rectangle_4_shape"
                         android:layout_marginStart="0dp"
                         android:layout_marginTop="0dp"
-                        android:inputType="textPassword"
+                        android:inputType="text"
                         android:paddingStart="10dp"
                         android:textColorHint="@color/confirm_password_color"
                         android:layout_width="333dp"
 
-                        android:hint="@string/confirm_password_string"
+                        android:hint="Facebook ID(optional)"
 
                         android:layout_height="58dp" />
 
-                    <ImageView android:id="@+id/__img___fluent_eye_20_filled1"
-                        android:src="@drawable/__img___fluent_eye_20_filled"
-                        android:contentDescription="__img___fluent_eye_20_filled"
-                        android:layout_marginStart="293dp"
-                        android:layout_marginTop="17dp"
-                        android:layout_width="22dp"
-                        android:onClick="showPassword"
-                        android:layout_height="22dp" />
+
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout android:id="@+id/instagram_id"
+                    android:layout_marginTop="479dp"
+                    android:layout_marginStart="22dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <EditText
+                        android:id="@+id/instagram"
+                        android:background="@drawable/rectangle_4_shape"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:inputType="text"
+                        android:paddingStart="10dp"
+                        android:textColorHint="@color/confirm_password_color"
+                        android:layout_width="333dp"
+
+                        android:hint="Instagram ID(optional)"
+
+                        android:layout_height="58dp" />
+                </RelativeLayout>
+
+
+                <RelativeLayout android:id="@+id/confirm_password__input_"
+                    android:layout_marginTop="409dp"
+                    android:layout_marginStart="22dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+
+                    <EditText
+                        android:id="@+id/age"
+                        android:background="@drawable/rectangle_4_shape"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:inputType="text"
+                        android:paddingStart="10dp"
+                        android:textColorHint="@color/confirm_password_color"
+                        android:layout_width="333dp"
+
+                        android:hint="Age"
+
+                        android:layout_height="58dp" />
+
+
 
 
                 </RelativeLayout>
 
 
                 <RelativeLayout android:id="@+id/password__input_"
-                    android:layout_marginTop="371dp"
+                    android:layout_marginTop="341dp"
                     android:layout_marginStart="22dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     >
 
-                    <EditText   android:id="@+id/password"
+                    <EditText   android:id="@+id/dateOfBirth"
                         android:background="@drawable/rectangle_4_ek1_shape"
                         android:layout_marginStart="0dp"
                         android:layout_marginTop="0dp"
-                        android:hint="@string/password_string"
-                        android:inputType="textPassword"
+                        android:hint="DOB"
+                        android:inputType="date"
                         android:paddingStart="10dp"
-                    android:textColorHint="@color/confirm_password_color"
+                        android:textColorHint="@color/confirm_password_color"
                         android:layout_width="333dp"
                         android:layout_height="58dp" />
 
-                    <ImageView android:id="@+id/__img___fluent_eye_20_filled"
-                        android:src="@drawable/__img___fluent_eye_20_filled"
-                        android:contentDescription="__img___fluent_eye_20_filled"
-                        android:layout_marginStart="293dp"
-                        android:layout_marginTop="17dp"
-                        android:layout_width="22dp"
-                        android:onClick="showPassword"
-                        android:layout_height="22dp" />
-
-<!--                    <TextView android:id="@+id/password"-->
-
-<!--                        android:textSize="15sp"-->
-<!--                        android:textColor="@color/confirm_password_color"-->
-<!--                        android:layout_marginLeft="18dp"-->
-<!--                        android:layout_marginTop="18dp"-->
-<!--                        android:layout_width="84.5dp"-->
-<!--                        android:layout_height="29.5dp"-->
-<!--                        android:text="@string/password_string"-->
-<!--                        />-->
 
                 </RelativeLayout>
 
 
                 <RelativeLayout android:id="@+id/email__input_"
-                    android:layout_marginTop="303dp"
+                    android:layout_marginTop="273dp"
                     android:layout_marginStart="22dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     >
 
                     <EditText
-                        android:id="@+id/email"
+                        android:id="@+id/lookingFor"
                         android:layout_width="333dp"
                         android:layout_height="58dp"
                         android:layout_marginStart="0dp"
                         android:layout_marginTop="0dp"
                         android:background="@drawable/rectangle_4_ek2_shape"
-                        android:hint="@string/email_string"
+                        android:hint="you'r here for"
                         android:inputType="textEmailAddress"
                         android:paddingStart="10dp"
                         android:textColorHint="@color/confirm_password_color" />
-
-                    <!--                    <TextView android:id="@+id/email"-->
-
-<!--                        android:textSize="15sp"-->
-<!--                        android:textColor="@color/confirm_password_color"-->
-<!--                        android:layout_marginLeft="18dp"-->
-<!--                        android:layout_marginTop="18dp"-->
-<!--                        android:layout_width="57.5dp"-->
-<!--                        android:layout_height="29.5dp"-->
-<!--                        android:text="@string/email_string"-->
-<!--                        />-->
 
                 </RelativeLayout>
                 <TextView
@@ -276,32 +207,22 @@
 
 
                 <RelativeLayout android:id="@+id/username__input_"
-                    android:layout_marginTop="235dp"
+                    android:layout_marginTop="205dp"
                     android:layout_marginStart="22dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     >
 
-                    <EditText   android:id="@+id/username"
+                    <EditText   android:id="@+id/job"
                         android:background="@drawable/rectangle_4_ek3_shape"
                         android:layout_marginStart="0dp"
                         android:textColorHint="@color/confirm_password_color"
                         android:layout_marginTop="0dp"
                         android:layout_width="333dp"
                         android:paddingStart="10dp"
-                        android:hint="@string/username_string"
+                        android:hint="JOB eg, software developer"
                         android:layout_height="58dp" />
 
-<!--                    <TextView android:id="@+id/username"-->
-
-<!--                        android:textSize="15sp"-->
-<!--                        android:textColor="@color/confirm_password_color"-->
-<!--                        android:layout_marginLeft="18dp"-->
-<!--                        android:layout_marginTop="18dp"-->
-<!--                        android:layout_width="89.5dp"-->
-<!--                        android:layout_height="29.5dp"-->
-<!--                        android:text="@string/username_string"-->
-<!--                        />-->
 
                 </RelativeLayout>
 
@@ -322,14 +243,14 @@
                         android:layout_width="366dp"
                         android:layout_height="100dp"
                         android:padding="5dp"
-                        android:text="@string/hello__register_to_get_started_string"
+                        android:text="Tell more about you!"
                         />
 
                 </RelativeLayout>
 
 
                 <RelativeLayout android:id="@+id/back_view"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginStart="22dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -11,7 +11,6 @@ import android.os.Bundle;
 
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,28 +20,15 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.Api;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GithubAuthProvider;
-import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -84,7 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
         inputEmail = findViewById(R.id.email);
         inputPassword = findViewById(R.id.password);
         inputConfirmPassword = findViewById(R.id.confirm_password);
-        registerButton = findViewById(R.id.register_btn);
+        registerButton = findViewById(R.id.update_btn);
         mRadioGroup = findViewById(R.id.radioGroup);
         progressDialog = new ProgressDialog(this);
         mAuth = FirebaseAuth.getInstance();
@@ -97,8 +83,6 @@ public class RegisterActivity extends AppCompatActivity {
         showPassword.setImageResource(R.drawable.__img___fluent_eye_20_filled);
         showConfirmPassword = findViewById(R.id.__img___fluent_eye_20_filled1);
         showConfirmPassword.setImageResource(R.drawable.__img___fluent_eye_20_filled);
-
-
 
         showPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,7 +154,6 @@ public class RegisterActivity extends AppCompatActivity {
         int selectedId = mRadioGroup.getCheckedRadioButtonId();
         final RadioButton radioButton = findViewById(selectedId);
 
-      String radioButtonText = radioButton.getText().toString();
 
         if (!email.equals(emailPattern) && email.length() == 0){
             inputEmail.setError("check your email");
@@ -190,12 +173,11 @@ public class RegisterActivity extends AppCompatActivity {
             finish();
             return;
         }
-        else if(!password.equals(confirmPassword)){
+        if(!password.equals(confirmPassword)){
             inputPassword.requestFocus();
             Toast.makeText(RegisterActivity.this, "Password mismatch", Toast.LENGTH_LONG).show();
             inputPassword.setError("Password mismatch");
             finish();
-            return;
         }else {
 
             progressDialog.setTitle("Registration...");
@@ -267,17 +249,27 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        mAuth.addAuthStateListener(firebaseAuthStateListener);
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        mAuth.removeAuthStateListener(firebaseAuthStateListener);
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if(FirebaseAuth.getInstance().getCurrentUser().isEmailVerified()){
+            
+        mAuth.addAuthStateListener(firebaseAuthStateListener);
+        }
+        else{
+            Toast.makeText(this, "Kindly verify the email", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+
+        mAuth.removeAuthStateListener(firebaseAuthStateListener);
+
+    }
 
     public void goToFrontPage(View view){
         Intent intent = new Intent(this, loginORregister_activity.class);

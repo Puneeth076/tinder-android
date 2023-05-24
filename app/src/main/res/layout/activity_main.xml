@@ -7,26 +7,38 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
+<TextView
+    android:id="@+id/nothingToShow"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="hello"
+    android:textColor="@color/black"
+    android:textSize="20dp"
+    android:gravity="center"
+    android:layout_marginTop="400dp"
+    android:layout_marginStart="100dp"
+    />
 
 
     <com.lorentzos.flingswipe.SwipeFlingAdapterView
     android:id="@+id/frame"
     android:background="#ffeee9e2"
+    android:layout_below="@+id/menu"
+        android:layout_above="@id/btns"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:rotation_degrees="15.5"
     tools:context=".MyActivity" />
 
     <LinearLayout
+        android:id="@+id/menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center"
         android:background="@drawable/rectangle_173_ek1_shape">
 
-        <RelativeLayout
-            android:layout_width="187dp"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content">
+
 
             <ImageView
                 android:id="@+id/profileImage"
@@ -35,29 +47,189 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="70dp"
+                android:layout_marginEnd="93dp"
+
+                android:layout_gravity="center"
                 android:layout_marginBottom="5dp"
                 android:background="@drawable/rectangle_173_ek1_shape"
 
                 android:src="@drawable/baseline_person_24"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-        </RelativeLayout>
+
 
 
         <ImageView
-        android:id="@+id/matchesImage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/rectangle_173_ek1_shape"
-        android:autofillHints="matches"
-        android:src="@drawable/baseline_supervisor_account_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/matchesImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:autofillHints="matches"
+            android:background="@drawable/rectangle_173_ek1_shape"
+            android:src="@drawable/baseline_supervisor_account_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/filter"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="5dp"
+            android:autofillHints="matches"
+            android:layout_gravity="center"
+            android:background="@drawable/rectangle_173_ek1_shape"
+            android:src="@drawable/baseline_checklist_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/btns"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:backgroundTint="@android:color/white"
+                app:fabSize="mini"
+                app:rippleColor="@null"
+                app:borderWidth="0dp"
+                app:srcCompat="@drawable/reverse"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabSkip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@android:color/white"
+                android:clickable="true"
+                android:contentDescription="TODO"
+                android:focusable="true"
+                app:borderWidth="0dp"
+                app:fabSize="normal"
+                app:rippleColor="@null"
+                app:srcCompat="@drawable/skip" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabSuperLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@android:color/white"
+                android:clickable="true"
+                android:focusable="true"
+                app:borderWidth="0dp"
+                app:fabSize="mini"
+                app:rippleColor="@null"
+                app:srcCompat="@drawable/ic_star_turquoise_24dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@android:color/white"
+                android:clickable="true"
+                android:focusable="true"
+                app:borderWidth="0dp"
+                app:fabSize="normal"
+                app:rippleColor="@null"
+                app:srcCompat="@drawable/ic_like_24dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabBoost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:backgroundTint="@android:color/white"
+                app:fabSize="mini"
+                app:rippleColor="@null"
+                app:borderWidth="0dp"
+                app:srcCompat="@drawable/__img___fluent_eye_20_filled"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/like"
+        android:layout_marginTop="400dp"
+        android:layout_marginStart="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/disLike"
+        android:layout_marginTop="400dp"
+        android:layout_marginStart="380dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
 </RelativeLayout>

@@ -4,21 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <!--
-    /*
-     *	This content is generated from the API File Info.
-     *	(Alt+Shift+Ctrl+I).
-     *
-     *	@desc
-     *	@file 		profile_posts
-     *	@date 		Thursday 11th of May 2023 05:58:32 PM
-     *	@title 		Mobile UI Kit
-     *	@author
-     *	@keywords
-     *	@generator 	Export Kit v1.3.figma
-     *
-     */
-    -->
+
     <ScrollView android:id="@+id/profile_posts"
         android:layout_width="wrap_content"
         android:layout_height="match_parent" >

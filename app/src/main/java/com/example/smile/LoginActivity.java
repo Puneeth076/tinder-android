@@ -142,13 +142,19 @@ public class LoginActivity extends AppCompatActivity {
                        }
                        else{
                            progressDialog.dismiss();
-                           Toast.makeText(LoginActivity.this, "Kindly verify your account", Toast.LENGTH_SHORT).show();
+                           mAuth.getCurrentUser().sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                               @Override
+                               public void onComplete(@NonNull Task<Void> task) {
+
+                                    Toast.makeText(LoginActivity.this, "Kindly verify your account", Toast.LENGTH_SHORT).show();
+                               }
+                           });
                        }
 
 
                        }else{
                            progressDialog.dismiss();
-                           Toast.makeText(LoginActivity.this, "No user found", Toast.LENGTH_LONG).show();
+                           Toast.makeText(LoginActivity.this, "Invalid credential..", Toast.LENGTH_LONG).show();
 
                        }
 
@@ -164,19 +170,24 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        mAuth.addAuthStateListener(firebaseAuthStateListener);
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        super.onStop();
-//        mAuth.removeAuthStateListener(firebaseAuthStateListener);
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+        mAuth.addAuthStateListener(firebaseAuthStateListener);
+
+    }
+
+    @Override
+    protected void onStop() {
+
+        super.onStop();
+        mAuth.removeAuthStateListener(firebaseAuthStateListener);
+    }
 
     public void  goToFrontPage(View view){
+
         Intent intent = new Intent(LoginActivity.this, loginORregister_activity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

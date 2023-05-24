@@ -55,7 +55,7 @@ public class setting_Activity extends AppCompatActivity {
     FirebaseAuth mAuth;
     ProgressDialog progressDialog;
 
-    TextView username;
+    TextView username, settings;
 
     DatabaseReference mUsersDatabase;
     String userid, name, phone, imageUrl,value, location;
@@ -75,9 +75,19 @@ public class setting_Activity extends AppCompatActivity {
         confirmBtn = findViewById(R.id.rectangle_243);
         backBtn = findViewById(R.id.rectangle_242);
         username = findViewById(R.id.name);
+        settings = findViewById(R.id.settings);
         mAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
-        userid = mAuth.getCurrentUser().getUid();
+            userid = mAuth.getCurrentUser().getUid();
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(setting_Activity.this, More_information_activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
 
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userid);
 
@@ -179,12 +189,14 @@ public class setting_Activity extends AppCompatActivity {
         phone = inputPhone.getText().toString();
         location = inputLocation.getText().toString();
 
+
         Map<String, Object> userInfo = new HashMap<>();
         userInfo.put("name", name);
         userInfo.put("phone", phone);
         userInfo.put("location", location);
         mUsersDatabase.updateChildren(userInfo);
 
+        confirmBtn.setEnabled(true);
 
         if(resultUri != null){
 
@@ -231,8 +243,6 @@ public class setting_Activity extends AppCompatActivity {
                             startActivity(intent);
                         }
                     });
-
-
                 }
 
             }).addOnFailureListener(new OnFailureListener() {
